@@ -11,16 +11,19 @@ This PoC implements the following architecture:
 
 
 ## Usage:
-* Run the docker-compose file in happy-cattle folder: 
-```shell 
-cd happy-cattle
-docker-compose up
- ```
+
 * Run the docker-compose file in smart-shepherd folder: 
 ```shell 
 cd smart-shepherd
 docker-compose up
  ```
+
+* Run the docker-compose file in happy-cattle folder: 
+```shell 
+cd happy-cattle
+docker-compose up
+ ```
+
 
 First, start with creating a subsciption from the Context Broker of Smart Shepherd to the Context Broker of Happy Cattle. This will enable Smart Shepherd to receive notification of animal coordinates update. 
 
@@ -47,7 +50,7 @@ First, start with creating a subsciption from the Context Broker of Smart Shephe
   ```
 * Create an entity at the Contect Broker of Happy Cattle:
 ```shell
-    curl --location --request POST 'localhost:1029/ngsi-ld/v1/entities' \
+    curl -v --location --request POST 'localhost:1029/ngsi-ld/v1/entities' \
         --header 'Content-Type: application/json' \
         --data-raw '{
    "id":"urn:ngsi-ld:Animal:0001",
@@ -78,7 +81,7 @@ Here you should have as a result an entity of Type animal created in the Context
 
 * Update a property in the Context Broker of Happy Cattle: 
 ```shell
-curl --location --request POST 'localhost:1029/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:0001/attrs' \
+curl -v --location --request POST 'localhost:1029/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:0001/attrs' \
     --header 'Content-Type: application/json' \
     --data-raw '{
    "location":{
