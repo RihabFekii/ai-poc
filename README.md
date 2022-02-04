@@ -42,7 +42,7 @@ First, start with creating a subsciption from the Context Broker of Smart Shephe
    "notification":{
       "format":"keyValues",
       "endpoint":{
-         "uri":"http://localhost:8080/notification",
+         "uri":"http://ai.notification-proxy.docker:8080/notification",
          "accept":"application/json"
       }
    }
