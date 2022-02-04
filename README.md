@@ -8,7 +8,7 @@ The AI service is providing real-time prediction and by means of having a Contex
 ## Architecure
 This PoC implements the following architecture: 
 
-
+![architecture](https://github.com/RihabFekii/ai-poc/blob/dev/doc/Architecture%20diagrams-Usage%20of%20AI%20service.jpg)
 
 ## Usage:
 * Run the docker-compose file in happy-cattle folder: 
