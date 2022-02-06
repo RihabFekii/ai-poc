@@ -1,0 +1,40 @@
+# Package Overview
+package_name: classification_model
+
+# Data Files
+training_data_file: train.csv
+test_data_file: test.csv
+
+# Variables
+# The variable we are attempting to predict (animal activity)
+label: AnimalActivity
+
+pipeline_name: classification_model
+pipeline_save_file: classification_model_output
+
+
+features:
+  - pos_x
+  - pos_y
+  - pos_z
+  - temp
+ 
+
+# set train/test split
+test_size: 0.1
+
+# to set the random seed
+random_state: 0
+
+
+# variables to scale
+standard_scale_vars:
+  - pos_x
+  - pos_y
+  - pos_z
+
+
+# variables to label encode 
+label_encode_vars:
+  - label
+
