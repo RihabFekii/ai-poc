@@ -10,7 +10,7 @@ test_data_file: test.csv
 label: AnimalActivity
 
 pipeline_name: classification_model
-pipeline_save_file: classification_model_output
+pipeline_save_file: classification_model_output_v
 
 
 features:
