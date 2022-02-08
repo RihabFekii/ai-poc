@@ -1,7 +1,9 @@
 from pathlib import Path
+from tabnanny import verbose
 from typing import Dict, List, Sequence
 
 from pydantic import BaseModel
+from sklearn.utils import shuffle
 from strictyaml import YAML, load
 
 import classification_model
@@ -17,35 +19,41 @@ TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
 
 
 class AppConfig(BaseModel):
-    """
-    Application-level config.
-    """
+	"""
+	Application-level config.
+	"""
 
-    package_name: str
-    training_data_file: str
-    test_data_file: str
-    pipeline_save_file: str
+	package_name: str
+	training_data_file: str
+	test_data_file: str
+	pipeline_save_file: str
 
 
 class ModelConfig(BaseModel):
-    """
-    All configuration relevant to model
-    training and feature engineering.
-    """
+	"""
+	All configuration relevant to model
+	training and feature engineering.
+	"""
 
-    label: str
-    features: List[str]
-    test_size: float
-    random_state: int
-    standard_scale_vars: List[float]
-    label_encode_vars: List[str]
+	target: str
+	features: List[str]
+	n_split: int
+	shuffle: bool
+	random_state: int
+	max_depth: int
+	n_estimators: int
+	learning_rate: float
+	verbosity: int
+	objective: str
+
+
 
 
 class Config(BaseModel):
-    """Master config object."""
+	"""Master config object."""
 
-    app_config: AppConfig
-    model_config: ModelConfig
+	app_config: AppConfig
+	model_config: ModelConfig
 
 
 def find_config_file() -> Path:
