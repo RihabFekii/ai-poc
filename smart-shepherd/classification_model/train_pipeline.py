@@ -1,0 +1,40 @@
+import numpy as np
+from config.core import config
+from pipeline import animal_activity_pipe
+from processing.data_manager import load_dataset, save_pipeline
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold
+
+from processing import preprosessor
+
+
+def run_training() -> None:
+	"""Train the model."""
+
+	# read training data
+	data = load_dataset(file_name=config.app_config.training_data_file)
+
+	# divide train and test
+	kfold = StratifiedKFold(
+		config.model_config.n_splits,
+		config.model_config.shuffle,
+		config.model_config.random_state)
+
+	X = data[config.model_config.features] #predictors 
+	y = data[config.model_config.target] #target
+	y = preprosessor.label_encode_target(y) #encoded target
+
+	for train_ix, test_ix in kfold.split(X, y):
+		X_train, X_test = X.iloc[train_ix], X.iloc[test_ix]
+		y_train, y_test = y[train_ix], y[test_ix]
+
+
+	# fit model
+	animal_activity_pipe.fit(X_train, y_train)
+
+	# persist trained model
+	save_pipeline(pipeline_to_persist=animal_activity_pipe)
+
+
+if __name__ == "__main__":
+    run_training()
