@@ -34,6 +34,7 @@ First, start with creating a subsciption from the Context Broker of Smart Shephe
         --data-raw ' {
    "description":"Notify me of new animal coordinates",
    "type":"Subscription",
+   "name":"animalCoordinatesSubscription"
    "entities":[
       {
          "type":"Animal"
