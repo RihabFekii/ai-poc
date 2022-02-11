@@ -28,7 +28,7 @@ services:
     command: --nojournal
 
   farm-notification-proxy:
-    image: ${NOTIFICATION_PROXY_IMAGE:-quay.io/wi_stefan/notification-proxy:0.0.4}
+    image: ${NOTIFICATION_PROXY_IMAGE:-quay.io/wi_stefan/notification-proxy:0.0.5}
     container_name: farm-notif-proxy
     ports:
       - 8081:8080
@@ -39,4 +39,3 @@ services:
 networks:
   ai-poc-network:
     external: true
-

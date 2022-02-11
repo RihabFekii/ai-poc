@@ -53,7 +53,7 @@ services:
   ai-notification-proxy:
     # avoid using latest without beeing aware of the consequences;)
     # this image definition uses the latest-stable release as default and allows to overwrite it via the env-var NOTIFICATION_PROXY_IMAGE
-    image: ${NOTIFICATION_PROXY_IMAGE:-quay.io/wi_stefan/notification-proxy:0.0.4}
+    image: ${NOTIFICATION_PROXY_IMAGE:-quay.io/wi_stefan/notification-proxy:0.0.5}
     container_name: ai-notif-proxy
     ports:
       - 8080:8080
