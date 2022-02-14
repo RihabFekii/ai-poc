@@ -14,9 +14,9 @@ def run_training() -> None:
 
 	# divide train and test
 	kfold = StratifiedKFold(
-		config.model_config.n_splits,
-		config.model_config.shuffle,
-		config.model_config.random_state)
+		n_splits=config.model_config.n_splits,
+		shuffle=config.model_config.shuffle,
+		random_state=config.model_config.random_state)
 
 	X = data[config.model_config.features] #predictors 
 	y = data[config.model_config.target] #target

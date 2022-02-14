@@ -16,11 +16,13 @@ animal_activity_pipe = Pipeline(
     (
 		"xgboost_classifier",
 		XGBClassifier(
-			config.model_config.max_depth,
-			config.model_config.learning_rate,
-			config.model_config.n_estimators,
-			config.model_config.verbosity,
-			config.model_config.objective
+			max_depth=config.model_config.max_depth,
+			learning_rate=config.model_config.learning_rate,
+			n_estimators=config.model_config.n_estimators,
+			verbosity=config.model_config.verbosity,
+			objective=config.model_config.objective,
+			use_label_encoder=config.model_config.use_label_encoder,
+			eval_metric=config.model_config.eval_metric
 		)
 	)
     ]

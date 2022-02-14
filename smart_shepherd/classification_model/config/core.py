@@ -4,13 +4,13 @@ from typing import List
 from pydantic import BaseModel
 from strictyaml import YAML, load
 
-import classification_model 
+import classification_model
+
 
 # Project Directories
 #To get the parent directory of the directory containing the script 
 # (regardless of the current working directory), you'll need to use __file__.
 PACKAGE_ROOT = Path(classification_model.__file__).resolve().parent
-#PACKAGE_ROOT="/Users/rihabfeki/Desktop/ai-poc/smart-shepherd/classification_model"
 ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
@@ -44,8 +44,8 @@ class ModelConfig(BaseModel):
 	learning_rate: float
 	verbosity: int
 	objective: str
-
-
+	use_label_encoder: bool
+	eval_metric: str
 
 
 class Config(BaseModel):
