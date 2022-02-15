@@ -38,14 +38,3 @@ def make_prediction(
         }
 
     return results
-
-if __name__ == "__main__":
-    test_d = {
-    "pos_x": 0.632182,
-    "pos_y": 2.170490,
-    "pos_z": 7.840970,
-    "temp": 12.8
-    }
-    input = pd.DataFrame([test_d])
-    res = make_prediction(input_data=input)
-    print(res)
