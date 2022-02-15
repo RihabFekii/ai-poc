@@ -28,7 +28,7 @@ def run_training() -> None:
 
 
 	# fit model
-	animal_activity_pipe.fit(X_train, y_train)
+	animal_activity_pipe.fit(X_train,y_train)
 
 	# persist trained model
 	save_pipeline(pipeline_to_persist=animal_activity_pipe)

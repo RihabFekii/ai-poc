@@ -5,11 +5,11 @@ import joblib
 import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import LabelEncoder
 
 
 from classification_model import __version__ as _version
 from classification_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
-
 
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
