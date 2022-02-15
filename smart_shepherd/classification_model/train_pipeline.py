@@ -1,9 +1,9 @@
+from sklearn.model_selection import StratifiedKFold
+from sklearn.preprocessing import LabelEncoder
+
 from config.core import config
 from pipeline import animal_activity_pipe
-from processing.data_manager import load_dataset, save_pipeline
-from sklearn.model_selection import StratifiedKFold
-
-from processing import preprosessor
+from processing.data_manager import load_dataset, save_encoder, save_pipeline
 
 
 def run_training() -> None:
@@ -12,15 +12,20 @@ def run_training() -> None:
 	# read training data
 	data = load_dataset(file_name=config.app_config.training_data_file)
 
+	X = data[config.model_config.features] #predictors 
+	y = data[config.model_config.target] #target
+
+	# encode target
+	enc = LabelEncoder()
+	enc.fit(y)
+	y = enc.transform(y) 
+	save_encoder(encoder_to_persist=enc)
+
 	# divide train and test
 	kfold = StratifiedKFold(
 		n_splits=config.model_config.n_splits,
 		shuffle=config.model_config.shuffle,
 		random_state=config.model_config.random_state)
-
-	X = data[config.model_config.features] #predictors 
-	y = data[config.model_config.target] #target
-	y = preprosessor.label_encode_target(y) #encoded target
 
 	for train_ix, test_ix in kfold.split(X, y):
 		X_train, X_test = X.iloc[train_ix], X.iloc[test_ix]

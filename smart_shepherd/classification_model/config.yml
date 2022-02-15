@@ -12,6 +12,9 @@ target: label
 pipeline_name: classification_model
 pipeline_save_file: classification_model_output_v
 
+encoder_name: label_encoder
+encoder_save_file: label_encoder_v
+
 
 features:
   - pos_x

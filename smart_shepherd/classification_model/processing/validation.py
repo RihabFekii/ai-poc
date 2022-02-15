@@ -2,9 +2,8 @@ from typing import List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
-from pydantic import BaseModel, ValidationError
-
 from classification_model.config.core import config
+from pydantic import BaseModel, ValidationError
 
 
 def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[dict]]:

@@ -1,11 +1,9 @@
 from pathlib import Path
 from typing import List
 
+import classification_model
 from pydantic import BaseModel
 from strictyaml import YAML, load
-
-import classification_model
-
 
 # Project Directories
 #To get the parent directory of the directory containing the script 
@@ -26,6 +24,8 @@ class AppConfig(BaseModel):
 	training_data_file: str
 	test_data_file: str
 	pipeline_save_file: str
+	encoder_name: str
+	encoder_save_file: str
 
 
 class ModelConfig(BaseModel):

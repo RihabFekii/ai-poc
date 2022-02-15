@@ -2,14 +2,13 @@ import typing as t
 from pathlib import Path
 
 import joblib
-import pandas as pd
 import numpy as np
+import pandas as pd
+from classification_model import __version__ as _version
+from classification_model.config.core import (DATASET_DIR, TRAINED_MODEL_DIR,
+                                              config)
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder
-
-
-from classification_model import __version__ as _version
-from classification_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
@@ -30,7 +29,9 @@ def save_pipeline(*, pipeline_to_persist: Pipeline) -> None:
     save_file_name = f"{config.app_config.pipeline_save_file}{_version}.pkl"
     save_path = TRAINED_MODEL_DIR / save_file_name
 
-    remove_old_pipelines(files_to_keep=[save_file_name])
+    # precise the encoder file name and add it to files to keep
+    encoder_file_name = f"{config.app_config.encoder_save_file}{_version}.pkl"
+    remove_old_pipelines(files_to_keep=[save_file_name,encoder_file_name])
     joblib.dump(pipeline_to_persist, save_path)
 
 
@@ -53,3 +54,19 @@ def remove_old_pipelines(*, files_to_keep: t.List[str]) -> None:
     for model_file in TRAINED_MODEL_DIR.iterdir():
         if model_file.name not in do_not_delete:
             model_file.unlink()
+
+
+def save_encoder(*, encoder_to_persist: LabelEncoder) -> None:
+    """ Save the label encoder"""
+
+    save_file_name = f"{config.app_config.encoder_save_file}{_version}.pkl"
+    save_path = TRAINED_MODEL_DIR / save_file_name
+
+    joblib.dump(encoder_to_persist, save_path)
+
+
+def load_encoder(*, file_name: str) -> LabelEncoder:
+    """ load a persisted label encoder """
+    encoder_file_path = TRAINED_MODEL_DIR / file_name
+    encoder = joblib.load(encoder_file_path)
+    return encoder

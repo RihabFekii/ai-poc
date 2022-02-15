@@ -4,11 +4,15 @@ import pandas as pd
 
 from classification_model import __version__ as _version
 from classification_model.config.core import config
-from classification_model.processing.data_manager import load_pipeline
+from classification_model.processing.data_manager import (load_encoder,
+                                                          load_pipeline)
 from classification_model.processing.validation import validate_inputs
 
 pipeline_file_name = f"{config.app_config.pipeline_save_file}{_version}.pkl"
 _animal_activity_pipe = load_pipeline(file_name=pipeline_file_name)
+
+encoder_file_name = f"{config.app_config.encoder_save_file}{_version}.pkl"
+_encoder = load_encoder(file_name=encoder_file_name)
 
 # creating optional type hints with typing.Union 
 # which makes the expected input to be either a dataframe or dict
@@ -26,15 +30,16 @@ def make_prediction(
         predictions = _animal_activity_pipe.predict(
             X=validated_data[config.model_config.features]
         )
+        readable_predictions = _encoder.inverse_transform(predictions)
         results = {
-            "predictions": [pred for pred in predictions],  # type: ignore
+            "predictions": [pred for pred in readable_predictions], 
             "version": _version,
             "errors": errors,
         }
 
     return results
 
-""" if __name__ == "__main__":
+if __name__ == "__main__":
     test_d = {
     "pos_x": 0.632182,
     "pos_y": 2.170490,
@@ -43,4 +48,4 @@ def make_prediction(
     }
     input = pd.DataFrame([test_d])
     res = make_prediction(input_data=input)
-    print(res) """
+    print(res)
