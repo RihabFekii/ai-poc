@@ -11,7 +11,8 @@ class Settings(BaseSettings):
 	BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = [
 		"http://localhost:2027",
 		"http://localhost:2028",
-		"http://localhost:8001",
+		"http://localhost:2029",
+		"http://localhost:8005",
 	]
 
 	PROJECT_NAME = "Animal Activity Prediction API"
