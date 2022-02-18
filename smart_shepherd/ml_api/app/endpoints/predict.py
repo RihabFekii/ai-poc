@@ -11,7 +11,7 @@ from loguru import logger
 router = APIRouter(tags=["Prediction"])
 
 @router.post("/predict", status_code=200, response_model=PredictionResults)
-async def predict(input_data: MultipleAnimalDataInputs) -> Any:
+def predict(input_data: MultipleAnimalDataInputs) -> Any:
 	"""
 	Make animal activity prediction with the classification model
 	"""
