@@ -16,7 +16,7 @@ _encoder = load_encoder(file_name=encoder_file_name)
 
 # creating optional type hints with typing.Union 
 # which makes the expected input to be either a dataframe or dict
-async def make_prediction(
+def make_prediction(
     *,
     input_data: t.Union[pd.DataFrame, dict],
 ) -> dict:
