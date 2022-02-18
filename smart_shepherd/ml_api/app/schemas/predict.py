@@ -1,7 +1,8 @@
 from typing import Any, List, Optional
 
-from pydantic import BaseModel
 from classification_model.processing.validation import AnimalDataInputSchema
+from pydantic import BaseModel
+
 
 class PredictionResults(BaseModel):
 	predictions : Optional[List[str]]
@@ -20,10 +21,8 @@ class MultipleAnimalDataInputs(BaseModel):
 						"pos_x": 1.22534,
 						"pos_y": 2.76543,
 						"pos_z": 8.44318,
-						"temp": 19
-					}
-					
+						"temp": 19.3
+					}   
 				]
-
 			}
 		}
