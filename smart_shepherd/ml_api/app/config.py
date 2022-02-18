@@ -12,7 +12,6 @@ class Settings(BaseSettings):
 		"http://localhost:2027",
 		"http://localhost:2028",
 		"http://localhost:2029",
-		"http://localhost:8005",
 	]
 
 	PROJECT_NAME = "Animal Activity Prediction API"
