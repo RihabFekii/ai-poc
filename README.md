@@ -24,7 +24,6 @@ cd happy-cattle
 docker-compose up
  ```
 
-
 First, start with creating a subsciption from the Context Broker of Smart Shepherd to the Context Broker of Happy Cattle. This will enable Smart Shepherd to receive notification of animal coordinates update. 
 
 * Smart Shepherd creates a subscription:
@@ -102,3 +101,28 @@ Here you should have as a result an entity of Type animal created in the Context
    curl --location --request GET 'localhost:1028/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:0001'
  ``` 
  
+## Getting the prediction 
+
+Now that the previous steps insure that an animal entity with coordinates attribute is created in the Context Broker of Smart Shepherd, now the AI service will subscribe to receive the notification once a new attribute is created/updated. 
+
+To do that, The AI service subscribes to its own Context Broker:
+```shell
+   curl -v --location --request POST 'localhost:1028/ngsi-ld/v1/subscriptions/' \
+      --header 'Content-Type: application/json' \
+      --data-raw ' {
+         "description":"Notify me of new animal coordinates",
+         "type":"Subscription",
+         "name":"animalCoordinatesSubscription",
+         "entities":[
+            {
+               "type":"Animal"
+            }
+         ],
+         "notification":{
+            "endpoint":{
+               "uri":"http://preprocessor.docker:5008/notification",
+               "accept":"application/json"
+            }
+         }
+      }'
+  ```

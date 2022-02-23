@@ -47,9 +47,9 @@ app.include_router(predict.router, prefix=settings.API_V1_STR)
 app.include_router(root_router)
 
 
-if __name__ == "__main__":
+""" if __name__ == "__main__":
     # Use this for debugging purposes only
-    logger.warning("Running in development mode. Do not run like this in production.")
-    import uvicorn
-
-    uvicorn.run("main:app", host='localhost', port=8005, log_level="info", reload=True)
+    #logger.warning("Running in development mode. Do not run like this in production.")
+    #import uvicorn
+    #uvicorn.run("main:app", host='localhost', port=8005, log_level="info", reload=True)
+ """

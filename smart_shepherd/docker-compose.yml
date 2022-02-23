@@ -3,7 +3,7 @@ version: "3.7"
 # FastAPI app
 services:
   apis:
-    build: ./apis
+    build: ./ml_api
     container_name: apis
     ports:
       - 5000:5000
@@ -11,7 +11,7 @@ services:
       ai-poc-network: 
         aliases: 
           - apis.docker
-
+  
   orion-ld:
     # avoid using latest without beeing aware of the consequences;)
     # this image definition uses the latest-stable release as default and allows to overwrite it via the env-var ORION_IMAGE
