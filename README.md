@@ -10,7 +10,16 @@ This PoC implements the following architecture:
 
 ![architecture](https://github.com/RihabFekii/ai-poc/blob/dev/doc/Architecture%20diagrams-Usage%20of%20AI%20service.jpg)
 
-## Usage:
+For a better understanding of the PoC, the above architecture could be devided to 3 main steps as folllows:
+
+* **Step 1:**  Smart Shepehrd Inc. subscribes to the Context Broker of Happy Cattle Co. to receive in an automated way animal coordinates update in its Context Broker by means of a Notification Proxy 
+
+* **Step 2:** The AI service sends HTTP Requests to retrieve animal data from its own Context Broker and to retrieve temerature data from the Context Broker of Real Time Weather
+
+* **Step 3:** Happy Cattle Co. subscribes to receive predictions updates from the Context Broker of Smart Shepherd Inc. by means of a Notification Proxy 
+
+
+## Step 1:
 
 * Run the docker-compose file in smart-shepherd folder: 
 ```shell 
@@ -101,28 +110,39 @@ Here you should have as a result an entity of Type animal created in the Context
    curl --location --request GET 'localhost:1028/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:0001'
  ``` 
  
-## Getting the prediction 
+## Step 2 
 
-Now that the previous steps insure that an animal entity with coordinates attribute is created in the Context Broker of Smart Shepherd, now the AI service will subscribe to receive the notification once a new attribute is created/updated. 
+* Run the docker-compose file in real_time_weather folder: 
 
-To do that, The AI service subscribes to its own Context Broker:
+```shell 
+cd real_time_weather
+docker-compose up 
+````
+
+First, create a TemperatureSensor entity at the Context Broker of Real Time Weather: 
+
 ```shell
-   curl -v --location --request POST 'localhost:1028/ngsi-ld/v1/subscriptions/' \
+   curl -v --location --request POST 'localhost:1026/ngsi-ld/v1/entities' \
       --header 'Content-Type: application/json' \
-      --data-raw ' {
-         "description":"Notify me of new animal coordinates",
-         "type":"Subscription",
-         "name":"animalCoordinatesSubscription",
-         "entities":[
-            {
-               "type":"Animal"
-            }
-         ],
-         "notification":{
-            "endpoint":{
-               "uri":"http://preprocessor.docker:5008/notification",
-               "accept":"application/json"
-            }
+      --data-raw '{
+         "id":"urn:ngsi-ld:TemperatureSensor:001",
+         "type":"TemperatureSensor",
+         "dateObserved":{
+            "type":"Property",
+            "value":"2016-11-30T07:00:00.00Z"
+         },
+         "temperature":{
+            "type":"Property",
+            "value":17
          }
       }'
-  ```
+```
+
+* To check that this entity is created, query the Context Broker of Real Time Weather:
+ ```shell
+   curl --location --request GET 'localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:TemperatureSensor:001'
+ ```
+
+
+## Step 3: 
+
