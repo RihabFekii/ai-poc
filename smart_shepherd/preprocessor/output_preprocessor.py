@@ -1,8 +1,10 @@
-from config import config
-from smart_shepherd.ml_api.app.schemas.predict import PredictionResults
-from utils.output_parser import prediction_parser_to_ngsild
-import requests
 import json
+
+import requests
+from ml_api.app.schemas.predict import PredictionResults
+
+from config import config
+from utils.output_parser import prediction_parser_to_ngsild
 
 
 def update_prediction(predictions: PredictionResults):
@@ -20,4 +22,3 @@ def update_prediction(predictions: PredictionResults):
 
 	return response.text
 
-	
