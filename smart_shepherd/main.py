@@ -1,9 +1,9 @@
 import requests
 
+from ml_api.app.schemas.predict import PredictionResults
 from preprocessor.config import config
 from preprocessor.input_preprocessor import InputPreprocessor
 from preprocessor.output_preprocessor import update_prediction
-from ml_api.app.schemas.predict import PredictionResults
 
 
 def predict(ip: InputPreprocessor) -> PredictionResults:
@@ -23,16 +23,9 @@ def predict(ip: InputPreprocessor) -> PredictionResults:
 	return prediction_result
 
 
-
 if __name__ == "__main__":
 
 	ip = InputPreprocessor()
 	prediction = predict(ip)
 	print(prediction)
 	update_prediction(predictions=prediction)
-
-
-# todo
-
-# write README about the Subscription on prediction update
-
