@@ -112,6 +112,31 @@ Here you should have as a result an entity of Type animal created in the Context
  
 ## Step 2 
 
+Now that the previous steps insure that an animal entity with coordinates attribute is created in the Context Broker of Smart Shepherd, now the AI service will subscribe to receive the notification once a new attribute is created/updated. 
+That will trigger the calculation of the prediction which also relies on getting temerature data. 
+
+First, The AI service subscribes to its own Context Broker:
+```shell
+   curl -v --location --request POST 'localhost:1028/ngsi-ld/v1/subscriptions/' \
+      --header 'Content-Type: application/json' \
+      --data-raw ' {
+         "description":"Notify AI service of new animal coordinates",
+         "type":"Subscription",
+         "name":"animalCoordinatesSubscription",
+         "entities":[
+            {
+               "type":"Animal"
+            }
+         ],
+         "notification":{
+            "endpoint":{
+               "uri":"http://apis.docker:5000/notification",
+               "accept":"application/json"
+            }
+         }
+      }'
+  ```
+
 * Run the docker-compose file in real_time_weather folder: 
 
 ```shell 
@@ -119,7 +144,7 @@ cd real_time_weather
 docker-compose up 
 ````
 
-First, create a TemperatureSensor entity at the Context Broker of Real Time Weather: 
+Second, create a TemperatureSensor entity at the Context Broker of Real Time Weather: 
 
 ```shell
    curl -v --location --request POST 'localhost:1026/ngsi-ld/v1/entities' \
