@@ -32,6 +32,11 @@ services:
     container_name: farm-notif-proxy
     ports:
       - 8081:8080
+    networks:
+      ai-poc-network:
+        aliases: 
+          - farm.notification-proxy.docker
+
     environment:
       - MICRONAUT_SERVER_PORT=8081
       - HTTP_SERVICES_BROKER_URL=http://farm.orion.docker:1026
