@@ -20,20 +20,3 @@ def parse_temperature(payload: dict) -> float:
 	temperature = payload["temperature"]["value"]
 
 	return temperature
-
-
-def parse_notification(payload: dict):
-	
-	list = payload["data"]
-
-	location = list[0]["location"]
-
-	coordinates = location["coordinates"]
-
-	# list of aninal dict keys 
-	keys = ["pos_x","pos_y","pos_z"]
-
-	# creating a dict from 2 lists of keys and values 
-	coord_dict = dict(zip(keys,coordinates))
-
-	return coord_dict
