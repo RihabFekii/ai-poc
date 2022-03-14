@@ -188,6 +188,7 @@ This last step will ensure that at the moment when the prediction of the animal 
             }
          ],
          "notification":{
+            "attributes":["animalActivity"],
             "endpoint":{
                "uri":"http://farm.notification-proxy.docker:8081/notification",
                "accept":"application/json"
