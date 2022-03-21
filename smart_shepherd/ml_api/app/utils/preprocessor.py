@@ -8,7 +8,7 @@ from fastapi.encoders import jsonable_encoder
 
 
 class Preprocessor: 
-	def notification_parser(self, payload: dict) -> List[float]:
+	def notification_parser(self, payload: dict):
 		"""
 		Extracts animal id and coordinates from the notification payload.
 		"""
