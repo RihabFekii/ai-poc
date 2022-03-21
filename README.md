@@ -48,7 +48,9 @@ First, start with creating a subsciption from the Context Broker of Smart Shephe
                "type":"Animal"
             }
          ],
+         "watchedAttributes":["location"],
          "notification":{
+            "attributes":["location"],
             "endpoint":{
                "uri":"http://ai.notification-proxy.docker:8080/notification",
                "accept":"application/json"
@@ -80,7 +82,7 @@ First, start with creating a subsciption from the Context Broker of Smart Shephe
          }
       }'
 ```
-* Query Smart Shephered Broker: 
+* Query Smart Shepherd Broker: 
 ```shell
    curl --location --request GET 'localhost:1028/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:0001'
 ``` 
@@ -105,7 +107,7 @@ Here you should have as a result an entity of Type animal created in the Context
          }
       }'
 ```
-* Query the Broker of Smart Shepehrd:
+* Query the Broker of Smart Shepherd:
  ```shell
    curl --location --request GET 'localhost:1028/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:0001'
  ``` 
@@ -128,7 +130,9 @@ First, The AI service subscribes to its own Context Broker:
                "type":"Animal"
             }
          ],
+         "watchedAttributes":["location"],
          "notification":{
+            "attributes":["location"],
             "endpoint":{
                "uri":"http://apis.docker:5000/notification",
                "accept":"application/json"
@@ -171,7 +175,7 @@ Second, create a TemperatureSensor entity at the Context Broker of Real Time Wea
 
 ## Step 3: 
 
-This last step will ensure that at the moment when the prediction of the animal activity is calculated by the AI service, the prediction attribute at the Context Broker of Happy Cattle will be created/updated. This is possible by means of subscribing to the Context Broker of Smart Shepeherd to receive notification of prediction update.
+This last step will ensure that at the moment when the prediction of the animal activity is calculated by the AI service, the prediction attribute at the Context Broker of Happy Cattle will be created/updated. This is possible by means of subscribing to the Context Broker of Smart Shepherd to receive notification of prediction update.
 
 - First, Happy Cattle creates a subscription at the Context Broker of Smart Shepherd: 
 
@@ -187,6 +191,7 @@ This last step will ensure that at the moment when the prediction of the animal 
                "type":"Animal"
             }
          ],
+         "watchedAttributes":["animalActivity"],
          "notification":{
             "attributes":["animalActivity"],
             "endpoint":{
@@ -197,16 +202,12 @@ This last step will ensure that at the moment when the prediction of the animal 
       }'
   ```
 
-- Run the following command to calculate prediction:
+At the background the prediction is calculated and updated in the Context Broker of Smart Shepherd. 
+With the last subscription executed, the prediction attribute "animalActivity" is updated in the 
+Context Broker of Happy Cattle.
 
-````shell
-cd smart_shepherd/ 
-python main.py
-````
-
-- Then query the Context Broker of Happy Cattle:
-
+- To verify, query the Broker of Happy Cattle:
+ 
 ```shell
    curl --location --request GET 'localhost:1029/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:0001'
 ```
-

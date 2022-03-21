@@ -46,8 +46,8 @@ services:
     command: --nojournal
     # do you need the mongo-db to be persistent? Then the volume-mount needs to be ai-mongo-database:/data/db (the folder used by mongo)
     # the current mount has no practical benefits, it will mount an empty volume to an unused folder inside mongo
-    volumes:
-      - ai-mongo-database:/data/db
+    #volumes:
+    #  - ai-mongo-database:/data/db
 
 
   ai-notification-proxy:
@@ -71,6 +71,4 @@ services:
 networks:
   ai-poc-network:
     name: ai-poc-network
-  
-volumes:
-  ai-mongo-database: ~
+

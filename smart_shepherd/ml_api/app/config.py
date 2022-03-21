@@ -1,22 +1,19 @@
-from typing import List
-
-from pydantic import AnyHttpUrl, BaseSettings
+from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
 	API_V1_STR: str = "/api/v1"
-
-	# CORS or "Cross-Origin Resource Sharing" 
-	# See: https://fastapi.tiangolo.com/tutorial/cors/
-	BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = [
-		"http://localhost:2027",
-		"http://localhost:2028",
-		"http://localhost:2029",
-	]
-
 	PROJECT_NAME = "Animal Activity Prediction API"
 
-
-
 settings = Settings()
+
+class ProcessorConfig:
+	# Real Time Weather
+	URL_WEATHER_ORION = "weather.orion.docker:1026"
+	TEMPERATURE_SENSOR_ID = "001"
+	URL_AI_PROVIDER_ORION = "ai.orion.docker:1026"
+	ANIMAL_ID = "0001"
+	HEADER = {"Content-Type": "application/json"}
+
+config = ProcessorConfig()
 
