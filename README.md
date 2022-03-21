@@ -24,13 +24,13 @@ For a better understanding of the PoC, the above architecture could be devided t
 * Run the docker-compose file in smart-shepherd folder: 
 ```shell 
 cd smart-shepherd
-docker-compose up
+docker-compose up -d --build
  ```
 
 * Run the docker-compose file in happy-cattle folder: 
 ```shell 
 cd happy-cattle
-docker-compose up
+docker-compose up -d
  ```
 
 First, start with creating a subsciption from the Context Broker of Smart Shepherd to the Context Broker of Happy Cattle. This will enable Smart Shepherd to receive notification of animal coordinates update. 
@@ -145,7 +145,7 @@ First, The AI service subscribes to its own Context Broker:
 
 ```shell 
 cd real_time_weather
-docker-compose up 
+docker-compose up -d
 ````
 
 Second, create a TemperatureSensor entity at the Context Broker of Real Time Weather: 
