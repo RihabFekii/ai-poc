@@ -23,6 +23,10 @@ class PostProcessor:
 		return prediction
 
 	def update_prediction(self, id, ngsild_prediction):
+		"""
+		Updates the prediction attribute "animalActivity" in the 
+		Context Broker of Happy Cattle
+		"""
 
 		orion = config.URL_AI_PROVIDER_ORION
 		header = config.HEADER
