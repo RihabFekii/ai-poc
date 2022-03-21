@@ -13,7 +13,6 @@ services:
           - apis.docker
   
   orion-ld:
-    # avoid using latest without beeing aware of the consequences;)
     # this image definition uses the latest-stable release as default and allows to overwrite it via the env-var ORION_IMAGE
     image: ${ORION_IMAGE:-quay.io/fiware/orion-ld:1.0.1}
     container_name: ai-orion-ld
@@ -44,14 +43,13 @@ services:
         aliases: 
           - ai.mongo.docker
     command: --nojournal
-    # do you need the mongo-db to be persistent? Then the volume-mount needs to be ai-mongo-database:/data/db (the folder used by mongo)
+    # do you need the mongo-db to be persistent? Then the volume-mount needs to be ai-mongo-database:/data/db
     # the current mount has no practical benefits, it will mount an empty volume to an unused folder inside mongo
     #volumes:
     #  - ai-mongo-database:/data/db
 
 
   ai-notification-proxy:
-    # avoid using latest without beeing aware of the consequences;)
     # this image definition uses the latest-stable release as default and allows to overwrite it via the env-var NOTIFICATION_PROXY_IMAGE
     image: ${NOTIFICATION_PROXY_IMAGE:-quay.io/wi_stefan/notification-proxy:0.0.5}
     container_name: ai-notif-proxy
