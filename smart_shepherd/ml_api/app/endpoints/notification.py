@@ -7,7 +7,8 @@ router=APIRouter(tags=["Notification"])
 
 @router.post("/notification")
 def receive_notification(data :dict = Body(...)):
-	print(f"This is the current notification payload: {data}")
+	print("This is the current notification payload:")
+	print(data)
 	# get animal id and coordinates
 	id, coordinates = preprocessor.notification_parser(data)
 	# get weather data
@@ -16,6 +17,7 @@ def receive_notification(data :dict = Body(...)):
 	model_input = preprocessor.model_input_preprocessor(coordinates, temperature)
 	# make prediction
 	results = make_prediction(input_data=model_input)
+	print("This is the prediction result:")
 	print(results)
 	# postprocessing 
 	prediction = postprocessor.prediction_parser_to_ngsild(results)
