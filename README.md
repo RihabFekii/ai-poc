@@ -24,7 +24,7 @@ For a better understanding of the PoC, the above architecture could be devided t
 * Run the docker-compose file in smart-shepherd folder: 
 ```shell 
 cd smart-shepherd
-docker-compose up -d --build
+docker-compose up -d
  ```
 
 * Run the docker-compose file in happy-cattle folder: 
