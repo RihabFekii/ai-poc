@@ -3,7 +3,7 @@ version: "3.7"
 # FastAPI app
 services:
   apis:
-    image: ${ML_API_IMAGE:-quay.io/rihab_feki/ml_api:0.0.1}
+    image: ${ML_API_IMAGE:-quay.io/rihab_feki/ml_api:0.0.2}
     container_name: apis
     ports:
       - 5000:5000
