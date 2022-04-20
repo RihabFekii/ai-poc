@@ -1,7 +1,7 @@
 # AI PoC for real-time animal activity recognition
 
 ## Introduction
-The aim of this PoC is to allow an AI service provider to offer it’s service on a public marketplace, where a service consuming party can acquire access to this offer, inject input data into it and receive predictions resulting from the inference with a trained AI model.
+The aim of this PoC is to allow an AI service provider to offer a service on a public marketplace, where a service consuming party can acquire access to this offer, inject input data into it and receive predictions resulting from the inference with a trained AI model.
 
 The AI service is providing real-time prediction and by means of having a Context Broker deployed in the offered service, the data provisioning will be in real-time from the data source(s) to the AI model and respectively publishing the results of the predictions to the consumer application via a Context Broker on the consumer side. 
 
