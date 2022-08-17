@@ -6,8 +6,8 @@ from pydantic import BaseModel
 from strictyaml import YAML, load
 
 # Project Directories
-#To get the parent directory of the directory containing the script 
-# (regardless of the current working directory), you'll need to use __file__.
+# Use __file__: to get the parent directory of the directory containing the script (regardless of the current working directory)
+# resolve() gives the absolute path 
 PACKAGE_ROOT = Path(classification_model.__file__).resolve().parent
 ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
