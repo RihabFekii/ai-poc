@@ -27,11 +27,11 @@ class Preprocessor:
 
 		orion = config.URL_WEATHER_ORION
 		sensor_id = config.TEMPERATURE_SENSOR_ID
-		url = f"http://{orion}/ngsi-ld/v1/entities/urn:ngsi-ld:TemperatureSensor:{sensor_id}"
-		headers = {"Content-Type": "application/json"}
+		url = f"http://{orion}:1026/ngsi-ld/v1/entities/urn:ngsi-ld:TemperatureSensor:{sensor_id}"
+		header = config.HEADER
 
 		try:
-			response = requests.request("GET", url, headers=headers)
+			response = requests.request("GET", url, headers=header)
 		except requests.HTTPError as e:
 			if e.response.status_code == 404:
 				return e

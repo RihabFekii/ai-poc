@@ -30,7 +30,7 @@ class PostProcessor:
 
 		orion = config.URL_AI_PROVIDER_ORION
 		header = config.HEADER
-		url = f"http://{orion}/ngsi-ld/v1/entities/{id}/attrs"
+		url = f"http://{orion}:1026/ngsi-ld/v1/entities/{id}/attrs"
 
 		response = requests.request("POST", url=url, headers=header, data=json.dumps(ngsild_prediction))
 
