@@ -25,13 +25,14 @@ class Preprocessor:
 		Gets temperature data and parses it.
 		"""
 
-		orion = config.URL_WEATHER_ORION
+		orion = config.WEATHER_SERVICE_ORION_HOST
+		port = config.WEATHER_SERVICE_ORION_PORT
 		sensor_id = config.TEMPERATURE_SENSOR_ID
-		url = f"http://{orion}:1026/ngsi-ld/v1/entities/urn:ngsi-ld:TemperatureSensor:{sensor_id}"
-		header = config.HEADER
+		url = f"http://{orion}:{port}/ngsi-ld/v1/entities/urn:ngsi-ld:TemperatureSensor:{sensor_id}"
+		HEADER = {"Content-Type": "application/json"}
 
 		try:
-			response = requests.request("GET", url, headers=header)
+			response = requests.request("GET", url, headers=HEADER)
 		except requests.HTTPError as e:
 			if e.response.status_code == 404:
 				return e

@@ -28,11 +28,12 @@ class PostProcessor:
 		Context Broker of Happy Cattle
 		"""
 
-		orion = config.URL_AI_PROVIDER_ORION
-		header = config.HEADER
-		url = f"http://{orion}:1026/ngsi-ld/v1/entities/{id}/attrs"
+		orion = config.AI_PROVIDER_ORION_HOST
+		port = config.AI_PROVIDER_ORION_PORT
+		HEADER = {"Content-Type": "application/json"}
+		url = f"http://{orion}:{port}/ngsi-ld/v1/entities/{id}/attrs"
 
-		response = requests.request("POST", url=url, headers=header, data=json.dumps(ngsild_prediction))
+		response = requests.request("POST", url=url, headers=HEADER, data=json.dumps(ngsild_prediction))
 
 		return response.text
 	
