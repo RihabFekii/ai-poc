@@ -5,6 +5,11 @@ services:
   apis:
     image: ${ML_API_IMAGE:-quay.io/rihab_feki/ml_api:0.0.2}
     container_name: apis
+    environment:
+      - WEATHER_SERVICE_ORION_HOST=weather.orion.docker
+      - WEATHER_SERVICE_ORION_PORT=1026
+      - AI_PROVIDER_ORION_HOST=ai.orion.docker
+      - AI_PROVIDER_ORION_PORT=1026
     ports:
       - 5000:5000
     networks: 
