@@ -11,5 +11,5 @@ xgboost>=1.5.2,<1.6.0
 pytest>=7.0.1,<7.1.0
 
 # packaging
-setuptools>=56.0.0,<56.1.0
-wheel>=0.36.2,<0.37.0
+setuptools>=65.5.1,<56.1.0
+wheel>=0.38.0,<0.37.0
