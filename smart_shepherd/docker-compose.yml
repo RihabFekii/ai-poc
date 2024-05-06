@@ -30,7 +30,7 @@ services:
       - "1026"
     # allow to access orion via 'localhost:1028', wich is fowarded to port 1026 on the container
     ports:
-      - "5000:5000"
+      - "1026:5001"
     # configuration via env var is less invasive and does not require knowledge about the entrypoint, thus is recommended 
     environment:
       - ORIONLD_MONGO_HOST=ai.mongo.docker
