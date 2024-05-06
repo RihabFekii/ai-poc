@@ -9,7 +9,7 @@ services:
         aliases: 
           - weather.orion.docker
     expose:
-      - "1026"
+      - "1027"
     ports:
       - "1026:1026"
     environment:
