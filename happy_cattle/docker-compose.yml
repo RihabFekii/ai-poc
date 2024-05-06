@@ -39,7 +39,7 @@ services:
 
     environment:
       - MICRONAUT_SERVER_PORT=8000    
-      - MICRONAUT_HTTP_SERVICES_BROKER_URL=http://farm.orion.docker:1026
+      - MICRONAUT_HTTP_SERVICES_BROKER_URL=http://farm.orion.docker:1031
 
 networks:
   ai-poc-network:
