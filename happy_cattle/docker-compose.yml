@@ -9,9 +9,9 @@ services:
         aliases: 
           - farm.orion.docker
     expose:
-      - "3000"
+      - "1030"
     ports:
-      - "3001:3000"
+      - "1031:1030"
     environment:
       - ORIONLD_MONGO_HOST=farm.mongo.docker
       - ORIONLD_LOG_LEVEL=DEBUG
